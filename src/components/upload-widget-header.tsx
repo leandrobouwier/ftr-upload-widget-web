@@ -5,7 +5,7 @@ import { UploadWidgetTitle } from "./upload-widget-title";
 
 export function UploadWidgetHeader() {
   return (
-    <div className="w-full p-4 py-2 bg-white/opacity border-zinc-800 border-b flex items-center justify-between">
+    <div className="w-full p-4 py-2 bg-white/[var(--opacity-custom-2)] border-zinc-800 border-b flex items-center justify-between">
       <UploadWidgetTitle />
 
       <Collapsible.Trigger asChild>

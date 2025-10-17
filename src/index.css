@@ -3,10 +3,10 @@
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
 
-  --font-size-xxs: 4.625rem;
+  --font-size-xxs: 0.625rem;
  
 
-  --opacity: 0.02;
+  --opacity-custom-2: 0.02;
 
   --shadow-shape: 0px 8px 8px rgba(0, 0, 0, 0.1),
     0px 4px 4px rgba(0, 0, 0, 0.1),
