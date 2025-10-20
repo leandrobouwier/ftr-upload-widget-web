@@ -3,15 +3,33 @@ import { UploadWidgetDropzone } from "./upload-widget-dropzone";
 import { UploadWidgetHeader } from "./upload-widget-header";
 import { UploadWidgetUploadList } from "./upload-widget-upload-list";
 import { UploadWidgetMinimizedButton } from "./upload-widget-minimized-button";
-import { useState } from "react";
-import { motion, useCycle } from 'motion/react'
+import { motion, useCycle } from "motion/react";
 
 export function UploadWidget() {
-    const [ isWidgetOpen, setIsWidgetOpen] = useState(false)
-    return (
-    <Collapsible.Root onOpenChange={setIsWidgetOpen}>
-      <div className="bg-zinc-900 overflow-hidden w-[660px] rounded-xl shadow-shape">
-        {!isWidgetOpen &&  <UploadWidgetMinimizedButton />}
+  const [isWidgetOpen, toggleWidgetOpen] = useCycle(false, true);
+  return (
+    <Collapsible.Root onOpenChange={() => toggleWidgetOpen()}>
+      <motion.div
+        className="bg-zinc-900 overflow-hidden w-[560px] rounded-xl shadow-shape"
+        animate={isWidgetOpen ? "open" : "closed"}
+        variants={{
+          closed: {
+            width: "max-content",
+            height: 44,
+            transition: {
+              type: "inertia",
+            },
+          },
+          open: {
+            width: 560,
+            height: "auto",
+            transition: {
+              duration: 0.5,
+            },
+          },
+        }}
+      >
+        {!isWidgetOpen && <UploadWidgetMinimizedButton />}
         <Collapsible.Content>
           <UploadWidgetHeader />
 
@@ -23,7 +41,7 @@ export function UploadWidget() {
             <UploadWidgetUploadList />
           </div>
         </Collapsible.Content>
-      </div>
+      </motion.div>
     </Collapsible.Root>
   );
 }
