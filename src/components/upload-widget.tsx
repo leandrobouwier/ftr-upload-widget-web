@@ -4,12 +4,13 @@ import { UploadWidgetHeader } from "./upload-widget-header";
 import { UploadWidgetUploadList } from "./upload-widget-upload-list";
 import { UploadWidgetMinimizedButton } from "./upload-widget-minimized-button";
 import { useState } from "react";
+import { motion, useCycle } from 'motion/react'
 
 export function UploadWidget() {
     const [ isWidgetOpen, setIsWidgetOpen] = useState(false)
     return (
     <Collapsible.Root onOpenChange={setIsWidgetOpen}>
-      <div className="bg-zinc-900 overflow-hidden w-[360px] rounded-xl shadow-shape">
+      <div className="bg-zinc-900 overflow-hidden w-[660px] rounded-xl shadow-shape">
         {!isWidgetOpen &&  <UploadWidgetMinimizedButton />}
         <Collapsible.Content>
           <UploadWidgetHeader />
