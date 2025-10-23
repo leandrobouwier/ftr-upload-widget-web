@@ -53,7 +53,7 @@ export function UploadWidgetDropzone() {
         )}
       </div>
 
-      <span className="text-xxxs text-zinc-400">
+      <span className="text-xxs text-zinc-400">
         Only PNG and JPG files are supported.
       </span>
     </motion.div>

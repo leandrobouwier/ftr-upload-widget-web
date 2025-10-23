@@ -9,7 +9,7 @@ export function UploadWidgetUploadList() {
     return (
         <div className="px-3 flex flex-col gap-3">
             <span className="text-xs font-medium">Uploaded files {' '}
-                <span className="text-zinc-400">(2)</span>
+                <span className="text-zinc-400">({uploads.size})</span>
             </span>
 
             {isUploadListEmpty ? (
@@ -17,7 +17,7 @@ export function UploadWidgetUploadList() {
             ) : (
                 <div className="space-y-2">
                     {Array.from(uploads.entries()).map(([uploadId, upload]) => {
-                        return <UploadWidgetUploadItem key={uploadId} upload={upload} />
+                        return <UploadWidgetUploadItem key={uploadId} upload={upload} uploadId={uploadId} />
                     })}
                 </div>
             )}
