@@ -3,6 +3,7 @@ import { enableMapSet } from 'immer'
 import { immer } from 'zustand/middleware/immer'
 import { uploadFileToStorage } from "../http/upload-file-to-storage";
 import { CanceledError } from "axios";
+import { useShallow } from "zustand/shallow";
 
 export type Upload = {
     name: string
@@ -110,3 +111,35 @@ export const useUploads = create<UploadState, [['zustand/immer', never]]>(
             cancelUpload,
         }
     }))
+
+
+    export const usePendingUploads = () => {
+        return useUploads(
+          useShallow((store) => {
+            const isThereAnyPendingUploads = Array.from(store.uploads.values()).some(
+              (upload) => upload.status === "progress"
+            );
+      
+            if (!isThereAnyPendingUploads) {
+              return { isThereAnyPendingUploads, globalPercentage: 100 };
+            }
+      
+            const { total, uploaded } = Array.from(store.uploads.values()).reduce(
+              (acc, upload) => {
+                acc.total += upload.originalSizeInbytes;
+                acc.uploaded += upload.uploadSizeInbytes;
+      
+                return acc;
+              },
+              { total: 0, uploaded: 0 }
+            );
+      
+            const globalPercentage = Math.min(
+              Math.round((uploaded * 100) / total),
+              100
+            );
+      
+            return { isThereAnyPendingUploads, globalPercentage };
+          })
+        );
+      };
