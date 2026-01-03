@@ -2,7 +2,6 @@ import { useDropzone } from "react-dropzone";
 import CircularProgressBar from "./ui/circular-progress-bar";
 import { motion } from "motion/react";
 import { usePendingUploads, useUploads } from "../store/uploads";
-import { Upload } from "lucide-react";
 
 export function UploadWidgetDropzone() {
   

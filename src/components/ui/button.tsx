@@ -24,6 +24,9 @@ export function Button({ size, className, asChild, ...props }: ButtonProps) {
     const Component = asChild ? Slot : 'button'
 
     return (
-        <button className={buttonVariants({ size, className })}   {...props} />
+        <Component
+            className={buttonVariants({ size, className })}
+            {...props}
+        />
     )
 }
