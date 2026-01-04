@@ -5,7 +5,8 @@ on:
     branches:
       - main
 env:
-    AWS_S3_BUCKET: 'rocketseat-upload-widget-web-estatico'
+    AWS_S3_BUCKET_ESTATICO: 'rocketseat-upload-widget-web-estatico'
+    AWS_S3_BUCKET_CDL:  'rocketseat-upload-widget-web-cdl'
     SOURCE_DIST: './dist'
 
 
@@ -47,7 +48,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: Sync files to S3
-        id: sync-files-to-s3
+      - name: Sync files to S3 estatico
+        id: sync-files-to-s3-estatico
         run: |
-            aws s3 sync ${{ env.SOURCE_DIST }} s3://${{ env.AWS_S3_BUCKET }}/ --delete --exclude '.*git*'
+            aws s3 sync ${{ env.SOURCE_DIST }} s3://${{ env.AWS_S3_BUCKET_ESTATICO }}/ --delete --exclude '.*git*'
+
+      - name: Sync files to S3 CDL
+        id: sync-files-to-s3-cdl
+        run: |
+            aws s3 sync ${{ env.SOURCE_DIST }} s3://${{ env.AWS_S3_BUCKET_CDL }}/ --delete --exclude '.*git*'
