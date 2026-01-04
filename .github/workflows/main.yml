@@ -6,7 +6,7 @@ on:
       - main
 env:
     AWS_S3_BUCKET_ESTATICO: 'rocketseat-upload-widget-web-estatico'
-    AWS_S3_BUCKET_CDL:  'rocketseat-upload-widget-web-cdl'
+    AWS_S3_BUCKET_CDL:  'rocketset-upload-widget-web-cdl'
     SOURCE_DIST: './dist'
 
 
